@@ -1,0 +1,52 @@
+{
+    "InsertScript": "
+    db.createCollection("Products")
+db.Products.insert([
+    {
+        "productID": "P001",
+        "Name": "Laptop",
+        "Brand": "Dell",
+        "Quantity": 5,
+        "Price": 32000
+    },
+    { 
+         "productID": "P002",
+        "Name": "Tablet",
+        "Brand": "Lenovo",
+        "Quantity": 7,
+        "Price": 15000
+    },
+    {
+         "productID": "P003",
+        "Name": "Camera",
+        "Brand": "Nikon",
+        "Quantity": 3,
+        "Price": 22000
+    },
+    {
+         "productID": "P004",
+        "Name": "Smartphone",
+        "Brand": "Samsung",
+        "Quantity": 8,
+        "Price": 25000
+    },
+    {
+         "productID": "P005",
+        "Name": "Speaker",
+        "Brand": "Bose",
+        "Quantity": 4,
+        "Price": 12000
+    }
+])
+    ",
+    "Query1": "db.Products.findOne({"productID": "P003"})",
+    "Query2": "db.Products.find({"Price": {$gte: 10000, $lte:20000}})",
+    "Query3": "db.Products.find({"Quantity": {$gt: 5}})",
+    "Query4": " db.Products.find({"Name": /top$/})",
+    "Query5": "db.Products.find({"Price": {$lte: 20000}})",
+    "Query6": "db.Products.find().sort({"Name": -1})",
+    "Query7": "db.Products.aggregate([{$group: {_id: null, totalSum: {$sum: "$Quantity"}}}])",
+    "Query8": " db.Products.aggregate([{ $addFields: {Total: { $multiply: ["$Quantity", "$Price"]}}}])",
+    "Query9": "db.Products.updateOne({productID: "P002"},{$set: {Price: 20000}})",
+    "Query10": "db.Products.deleteOne({Brand: "Samsung"})"
+}
